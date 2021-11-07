@@ -10,7 +10,7 @@ public class Game {
         System.out.println("First Generation");
         board.printBoard();
         board.nextGeneration();
-        System.out.println("next Generation");
+        System.out.println("Next Generation");
         board.printBoard();
     }
 }

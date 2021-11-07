@@ -10,7 +10,7 @@ public class GameTest {
 
 
     @Test
-    public void foundsNoLivingNeighboursInAnEmptyGrid() {
+    public void noLivingNeighboursFoundInAnEmptyBoard() {
 
         int neighboursCount = board.countAliveNeighbours(1, 4);
         Assert.assertEquals(neighboursCount, 0);
@@ -18,7 +18,7 @@ public class GameTest {
     }
 
     @Test
-    public void foundsOneLivingNeighbour() {
+    public void oneLivingNeighbourFound() {
 
         board.setAliveCell(0, 3);
 
@@ -28,7 +28,7 @@ public class GameTest {
     }
 
     @Test
-    public void foundsTwoLivingNeighbours() {
+    public void twoLivingNeighboursFound() {
 
         board.setAliveCell(0, 3);
         board.setAliveCell(0, 4);
@@ -39,7 +39,7 @@ public class GameTest {
     }
 
     @Test
-    public void foundsThreeLivingNeighbours() {
+    public void threeLivingNeighboursFound() {
 
         board.setAliveCell(0, 3);
         board.setAliveCell(0, 4);
@@ -51,7 +51,7 @@ public class GameTest {
     }
 
     @Test
-    public void foundsFourLivingNeighbours() {
+    public void fourLivingNeighboursFound() {
 
         board.setAliveCell(0, 3);
         board.setAliveCell(0, 4);
@@ -64,7 +64,7 @@ public class GameTest {
     }
 
     @Test
-    public void foundsFiveLivingNeighbours() {
+    public void fiveLivingNeighboursFound() {
 
         board.setAliveCell(0, 3);
         board.setAliveCell(0, 4);
@@ -75,6 +75,20 @@ public class GameTest {
         int neighboursCount = board.countAliveNeighbours(1, 4);
 
         Assert.assertEquals(neighboursCount, 5);
+    }
+
+
+    @Test
+    public void deadCellWithThreeNeighboursGetsAlive() {
+
+        board.setAliveCell(0, 3);
+        board.setAliveCell(0, 4);
+        board.setAliveCell(0, 5);
+        board.nextGeneration();
+
+        testBoard.setAliveCell(1, 4);
+
+        Assert.assertTrue(board.isCellAlive(1, 4));
     }
 
     @Test

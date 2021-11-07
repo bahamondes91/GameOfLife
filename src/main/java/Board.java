@@ -86,5 +86,9 @@ public class Board {
 
     }
 
+    public boolean isCellAlive(int x, int y) {
+        return board[x][y] == 1;
+    }
+
 
 }
