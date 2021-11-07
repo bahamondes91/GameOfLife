@@ -1,18 +1,19 @@
 import org.junit.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.Assert;
+
 public class GameTest {
 
 
     Board board = new Board(4, 8);
 
+    Board testBoard = new Board(4, 8);
 
 
     @Test
     public void foundsNoLivingNeighboursInAnEmptyGrid() {
 
         int neighboursCount = board.countAliveNeighbours(1, 4);
-   Assert.assertEquals(neighboursCount, 0) ;
+        Assert.assertEquals(neighboursCount, 0);
 
     }
 
@@ -26,45 +27,72 @@ public class GameTest {
         Assert.assertEquals(neighboursCount, 1);
     }
 
+    @Test
+    public void foundsTwoLivingNeighbours() {
 
+        board.setAliveCell(0, 3);
+        board.setAliveCell(0, 4);
 
-//    @Test
-//    public void LiveCellWithLessThanTwoLiveNeighborsDies() {
-//        GameOfLife.CellState currentState = GameOfLife.CellState.isAlive;
-//        int aliveNeighbors = 1;
-//        GameOfLife.CellState result = GameOfLife.GameRules.NewCellState(currentState, aliveNeighbors);
-//        assertEquals(GameOfLife.CellState.isDead, result);
-//    }
-//    @Test
-//    public void LiveCellLessThanTwoLiveNeighborsDies() {
-//        GameOfLife.CellState currentState = GameOfLife.CellState.isAlive;
-//        int aliveNeighbors = 1;
-//        GameOfLife.CellState result = GameOfLife.GameRules.NewCellState(currentState, aliveNeighbors);
-//        assertEquals(GameOfLife.CellState.isDead, result);
-//    }
-//    @Test
-//    public void LiveCellWith0LiveNeighborsDies() {
-//        GameOfLife.CellState currentState = GameOfLife.CellState.isAlive;
-//        int aliveNeighbors = 0;
-//        GameOfLife.CellState result = GameOfLife.GameRules.NewCellState(currentState, aliveNeighbors);
-//        assertEquals(GameOfLife.CellState.isDead, result);
-//    }
-//    @Test
-//    public void LiveCellWithMoreThanThreeNeighborsDies() {
-//        GameOfLife.CellState currentState = GameOfLife.CellState.isAlive;
-//        int aliveNeighbors = 4;
-//        GameOfLife.CellState result = GameOfLife.GameRules.NewCellState(currentState, aliveNeighbors);
-//        assertEquals(GameOfLife.CellState.isDead, result);
-//    }
-//    @Test
-//    public void DeadCellWithExactlyThreeLiveNeighborsLives() {
-//        GameOfLife.CellState currentState = GameOfLife.CellState.isDead;
-//        int aliveNeighbors = 3;
-//        GameOfLife.CellState result = GameOfLife.GameRules.NewCellState(currentState, aliveNeighbors);
-//        assertEquals(GameOfLife.CellState.isAlive, result);
-//    }
+        int neighboursCount = board.countAliveNeighbours(1, 4);
 
+        Assert.assertEquals(neighboursCount, 2);
+    }
 
+    @Test
+    public void foundsThreeLivingNeighbours() {
 
+        board.setAliveCell(0, 3);
+        board.setAliveCell(0, 4);
+        board.setAliveCell(0, 5);
+
+        int neighboursCount = board.countAliveNeighbours(1, 4);
+
+        Assert.assertEquals(neighboursCount, 3);
+    }
+
+    @Test
+    public void foundsFourLivingNeighbours() {
+
+        board.setAliveCell(0, 3);
+        board.setAliveCell(0, 4);
+        board.setAliveCell(0, 5);
+        board.setAliveCell(1, 5);
+
+        int neighboursCount = board.countAliveNeighbours(1, 4);
+
+        Assert.assertEquals(neighboursCount, 4);
+    }
+
+    @Test
+    public void foundsFiveLivingNeighbours() {
+
+        board.setAliveCell(0, 3);
+        board.setAliveCell(0, 4);
+        board.setAliveCell(0, 5);
+        board.setAliveCell(1, 5);
+        board.setAliveCell(2, 5);
+
+        int neighboursCount = board.countAliveNeighbours(1, 4);
+
+        Assert.assertEquals(neighboursCount, 5);
+    }
+
+    @Test
+    public void testNextGeneration() {
+
+        board.setAliveCell(1, 4);
+        board.setAliveCell(2, 3);
+        board.setAliveCell(2, 4);
+
+        board.nextGeneration();
+
+        testBoard.setAliveCell(1, 3);
+        testBoard.setAliveCell(2, 3);
+        testBoard.setAliveCell(1, 4);
+        testBoard.setAliveCell(2, 4);
+
+        Assert.assertArrayEquals(board.board, testBoard.board);
+
+    }
 }
 

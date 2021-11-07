@@ -15,6 +15,7 @@ public class Board {
 
     public void setDeadCell(int x, int y) {
         this.board[x][y] = 0;
+
     }
 
     public void printBoard() {
@@ -32,11 +33,11 @@ public class Board {
 
     }
 
-    public int isAlive(int x, int y){
-        if (x < 0 || x >= width){
+    public int isAlive(int x, int y) {
+        if (x < 0 || x >= width) {
             return 0;
         }
-        if (y < 0 || y >= height){
+        if (y < 0 || y >= height) {
             return 0;
         }
         return this.board[x][y];
@@ -50,15 +51,15 @@ public class Board {
                 int aliveNeighbours = countAliveNeighbours(x, y);
 
                 if (isAlive(x, y) == 1) {
-                    if (aliveNeighbours < 2){
+                    if (aliveNeighbours < 2) {
                         newBoard[x][y] = 0;
-                    }else if (aliveNeighbours == 2){
+                    } else if (aliveNeighbours == 2) {
                         newBoard[x][y] = 1;
-                    } else if (aliveNeighbours > 3){
+                    } else if (aliveNeighbours > 3) {
                         newBoard[x][y] = 0;
                     }
-                }else {
-                    if (aliveNeighbours == 3){
+                } else {
+                    if (aliveNeighbours == 3) {
                         newBoard[x][y] = 1;
                     }
                 }
@@ -70,15 +71,15 @@ public class Board {
 
     public int countAliveNeighbours(int x, int y) {
         int count = 0;
-        count += isAlive(x - 1, y -1) ;
-        count += isAlive(x , y -1 );
-        count += isAlive(x + 1, y -1);
+        count += isAlive(x - 1, y - 1);
+        count += isAlive(x, y - 1);
+        count += isAlive(x + 1, y - 1);
 
         count += isAlive(x - 1, y);
         count += isAlive(x + 1, y);
 
         count += isAlive(x - 1, y + 1);
-        count += isAlive(x , y + 1);
+        count += isAlive(x, y + 1);
         count += isAlive(x + 1, y + 1);
 
         return count;
